@@ -55,28 +55,7 @@ schedule:
 platforms:
   enabled: false                         # 是否启用热榜平台抓取
   sources:
-    - id: "toutiao"
-      name: "今日头条"
-    - id: "baidu"
-      name: "百度热搜"
-    - id: "wallstreetcn-hot"
-      name: "华尔街见闻"
-    - id: "thepaper"
-      name: "澎湃新闻"
-    - id: "bilibili-hot-search"
-      name: "bilibili 热搜"
-    - id: "cls-hot"
-      name: "财联社热门"
-    - id: "ifeng"
-      name: "凤凰网"
-    - id: "tieba"
-      name: "贴吧"
-    - id: "weibo"
-      name: "微博"
-    - id: "douyin"
-      name: "抖音"
-    - id: "zhihu"
-      name: "知乎"
+
 
 
 
@@ -124,6 +103,16 @@ rss:
     - id: "复旦白泽战队"
       name: "复旦白泽战队"
       url: "https://wechat2rss.xlab.app/feed/882ec123376dc8e89d3c5f6ef4bd2fdd0af65465.xml"
+
+    - id: "The Hacker News"
+      name: "The Hacker News"
+      url: "https://feeds.feedburner.com/TheHackersNews"
+
+    - id: "Seebug 最新漏洞"
+      name: "Seebug 最新漏洞"
+      url: "https://www.seebug.org/rss/new"
+
+
 
 
 
@@ -192,34 +181,19 @@ display:
   #   2. 下方 regions 中对应开关为 true
   region_order:
     - new_items                       # 1️⃣ 新增热点区域
-    - hotlist                         # 2️⃣ 热榜区域（关键词匹配）
-    - rss                             # 3️⃣ RSS 订阅区域
-    - standalone                      # 4️⃣ 独立展示区
-    - ai_analysis                     # 5️⃣ AI 分析区域
-
-  # 推送区域开关
-  # 控制各区域是否启用（配合 region_order 使用）
+    - hotlist                       # 2️⃣ 热榜区域（关键词匹配）
+    - rss                       # 3️⃣ RSS 订阅区域
+    - standalone                       # 4️⃣ 独立展示区
+    - ai_analysis                       # 5️⃣ AI 分析区域
   regions:
-    hotlist: true                     # 热榜区域（关键词匹配的热点新闻）
-    new_items: false                   # 新增热点区域（含热榜新增 + RSS 新增）
-                                      # 注：热点词汇统计中的新增标记🆕不受此配置影响
-
-    rss: true                         # RSS 订阅区域
-                                      # 开启后将对 RSS 进行关键词分析并在通知中展示
-                                      # 关闭后跳过分析，但独立展示区不受影响
-
-    standalone: false                 # 独立展示区（完整热榜/RSS，不受关键词过滤）
-    ai_analysis: true                 # AI 分析区域
-
-  # 📋 独立展示区配置
-  # 用途：将指定平台的完整热榜/RSS 数据独立提取，不受关键词过滤影响
-  # 两个独立用途：
-  #   - 推送展示：由 regions.standalone 开关控制，在推送中单独展示完整热榜
-  #   - AI 分析：由 ai.include_standalone 开关控制，将完整数据送入 AI 做深度分析
-  # 两者共享此处的平台/RSS 配置，但开关互相独立（可只开 AI 分析、不推送展示）
+    new_items: false # 新增热点区域（含热榜新增 + RSS 新增）
+    hotlist: true # 热榜区域（关键词匹配的热点新闻）
+    rss: true # RSS 订阅区域
+    standalone: true # 独立展示区（完整热榜/RSS，不受关键词过滤）
+    ai_analysis: false # AI 分析区域
   standalone:
     platforms: [] # 热榜平台 ID 列表（如 ["zhihu", "weibo"]）
-    rss_feeds: []                     # RSS 源 ID 列表（如 ["hacker-news"]）
+    rss_feeds: ["360 Netlab Blog","VentureBeat","复旦白泽战队","The Hacker News","Seebug 最新漏洞"] # RSS 源 ID 列表（如 ["hacker-news"]）
     max_items: 20                     # 每个源最多展示条数（0=不限制）
 
 
